@@ -11,7 +11,7 @@ dotenv.config();
 // Set this
 const amountToTransferPerAddress = ethers.utils.parseEther("0.005");
 
-async function main() {
+async function proposeBatchFundingTransaction() {
   const safeAddress = process.env.SAFE_ADDRESS ?? "";
   const safeSignerPrivKey = process.env.SAFE_SIGNER_PRIV_KEY ?? "";
   const web3Provider = new ethers.providers.InfuraProvider();
@@ -50,4 +50,16 @@ async function main() {
   console.log("Done.");
 }
 
-main();
+function printAddressesFromSeedPhrase() {
+  const hdNode = ethers.utils.HDNode.fromMnemonic(
+    process.env.METAMASK_SEED_PHRASE ?? ""
+  );
+  const addrs: string[] = [];
+  for (let i = 0; i < 100; i++) {
+    addrs.push(hdNode.derivePath(`m/44'/60'/0'/0/${i}`).address);
+  }
+  console.log(addrs);
+}
+
+// proposeBatchFundingTransaction();
+printAddressesFromSeedPhrase();
