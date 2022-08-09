@@ -4,5 +4,6 @@ Funds a list of addresses with Ether in one batch transaction using a Gnosis saf
 
 1. Populate `.env` from `.env.example`
 2. Populate `addresses.json` from `addresses.json.example`
-3. `yarn`
-4. `yarn run start`
+3. Update `amountToTransferPerAddress` in `index.ts`
+4. `yarn`
+5. `yarn run start`

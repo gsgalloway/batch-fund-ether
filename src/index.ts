@@ -8,6 +8,9 @@ import addresses from "../addresses.json";
 
 dotenv.config();
 
+// Set this
+const amountToTransferPerAddress = ethers.utils.parseEther("0.005");
+
 async function main() {
   const safeAddress = process.env.SAFE_ADDRESS ?? "";
   const safeSignerPrivKey = process.env.SAFE_SIGNER_PRIV_KEY ?? "";
@@ -24,8 +27,6 @@ async function main() {
     txServiceUrl: "https://safe-transaction.gnosis.io",
     ethAdapter,
   });
-
-  const amountToTransferPerAddress = ethers.utils.parseEther("10");
 
   const transactions: MetaTransactionData[] = addresses.map((addr) => ({
     data: "0x",
